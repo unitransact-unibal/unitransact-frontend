@@ -11,12 +11,37 @@
       </label>
     </div>
     <div class="flex-1 px-2 mx-2">
-      <span class="text-lg font-bold"> Hi {{ username }} </span>
+      <span class="text-lg font-bold"> UniTransact </span>
     </div>
     <div class="flex-none">
-      <button class="btn btn-square btn-ghost">
-        <i class="fa fa-user-circle text-lg"></i>
-      </button>
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" class="btn btn-square btn-ghost">
+          <i class="fa fa-user-circle text-lg"></i>
+        </div>
+        <ul
+          tabindex="0"
+          class="
+            p-2
+            shadow
+            menu
+            dropdown-content
+            bg-base-100
+            rounded-box
+            w-52
+            space-y-1
+          "
+        >
+          <li>
+            <div class="p-3 text-sm text-center">{{ username }}</div>
+          </li>
+          <li>
+            <a class="bg-base-200">My Account</a>
+          </li>
+          <li>
+            <a class="bg-base-200">Sign Out</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>

@@ -10,17 +10,35 @@
               <label class="label">
                 <span class="label-text">Email</span>
               </label>
-              <input type="text" placeholder="email" class="input" />
+              <input
+                type="email"
+                placeholder="email"
+                class="input"
+                :class="{ 'input-error input-bordered': passValidation }"
+                v-model="email"
+              />
+              <label class="label" v-if="emailValidation">
+                <span class="label-text-alt">{{ emailValidation }}</span>
+              </label>
             </div>
 
             <div class="form-control w-full">
               <label class="label">
                 <span class="label-text">Password</span>
               </label>
-              <input type="text" placeholder="password" class="input" />
+              <input
+                type="password"
+                placeholder="password"
+                class="input"
+                :class="{ 'input-error input-bordered': passValidation }"
+                v-model="password"
+              />
+              <label class="label" v-if="passValidation">
+                <span class="label-text-alt">{{ passValidation }}</span>
+              </label>
             </div>
 
-            <button class="btn btn-primary">Sign In</button>
+            <button class="btn btn-primary" @click="signIn()">Sign In</button>
           </div>
         </div>
       </div>
@@ -31,6 +49,26 @@
 <script>
 export default {
   name: "SignIn",
+  data() {
+    return {
+      email: "",
+      password: "",
+      emailValidation: "",
+      passValidation: "",
+    };
+  },
+  methods: {
+    signIn() {
+      const fillThis = "This field should not be left empty";
+      this.emailValidation = this.email === "" ? fillThis : "";
+      this.passValidation = this.email === "" ? fillThis : "";
+      if (this.emailValidation != "" || this.passValidation != "") {
+        return;
+      }
+
+      console.log("signing in", this.email, this.password);
+    },
+  },
 };
 </script>
 

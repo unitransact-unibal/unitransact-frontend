@@ -1,7 +1,10 @@
 import axios from "axios";
+import router from "../../router";
 const state = {
   username: "john-doe",
-  full_name: "John Doe",
+  first_name: "John",
+  last_name: "Doe",
+  email: "johndoe@gmail.com",
   token: "",
 };
 
@@ -31,9 +34,9 @@ const actions = {
     await axios
       .post("/auth/login/", credentials)
       .then((response) => {
-        console.log(response.data.key);
         commit("setToken", response.data.key);
         actions.getUser({ commit });
+        router.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -41,17 +44,17 @@ const actions = {
     console.log("Authenticating", credentials);
   },
   async getUser({ commit }) {
-    console.log(state.token);
     const csrftoken = getCookie("csrftoken");
     await axios
       .get("/auth/user/", {
         headers: {
-          Authorization: "Token " + state.token,
+          Authorization: state.token,
           "X-CSRFToken": csrftoken,
         },
       })
       .then((response) => {
         console.log(response);
+        commit("setBio", response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -60,7 +63,13 @@ const actions = {
 };
 
 const mutations = {
-  setToken: (state, token) => (state.token = token),
+  setToken: (state, token) => (state.token = "Token " + token),
+  setBio: (state, details) => {
+    state.username = details.username;
+    state.email = details.email;
+    state.first_name = details.first_name;
+    state.last_name = details.last_name;
+  },
 };
 
 export default {

@@ -1,17 +1,8 @@
 <template>
   <div class="shadow bg-base-100 drawer drawer-mobile min-h-screen">
     <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
-    <div
-      class="flex flex-col justify-center drawer-content rounded-lg shadow-2xl"
-    >
-      <div class="hidden text-xs text-center lg:block">
-        Menu is always open on desktop size. <br />Resize the browser to see
-        toggle button on mobile size
-      </div>
-      <div class="text-xs text-center lg:hidden">
-        Menu can be toggled on mobile size. <br />Resize the browser to see
-        fixed sidebar on desktop size
-      </div>
+    <div class="drawer-content rounded-lg shadow-2xl">
+      <slot></slot>
     </div>
     <div class="drawer-side bg-base-100">
       <label for="nav-drawer" class="drawer-overlay"></label>

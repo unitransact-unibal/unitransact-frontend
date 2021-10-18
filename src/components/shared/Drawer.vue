@@ -11,7 +11,7 @@
       <ul
         class="
           menu
-          p-4
+          py-4
           overflow-y-auto
           w-56
           bg-neutral
@@ -23,13 +23,13 @@
         <li class="menu-title">
           <span> Funds </span>
         </li>
-        <li>
+        <li class="hover-bordered">
           <a>
             <i class="mr-2 fa fa-exchange-alt"></i>
             Transactions
           </a>
         </li>
-        <li>
+        <li class="hover-bordered">
           <a>
             <i class="mr-2 fa fa-money-check-alt"></i>
             Wallet

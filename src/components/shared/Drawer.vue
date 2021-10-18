@@ -1,7 +1,9 @@
 <template>
   <div class="shadow bg-base-100 drawer drawer-mobile min-h-screen">
     <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content rounded-lg shadow-2xl">
+    <div
+      class="drawer-content rounded-box bg-base-200 bg-opacity-50 shadow-2xl"
+    >
       <slot></slot>
     </div>
     <div class="drawer-side bg-base-100">
@@ -11,18 +13,27 @@
           menu
           p-4
           overflow-y-auto
-          w-80
+          w-56
           bg-neutral
           text-base-content
           mr-3
-          rounded-lg
+          rounded-box
         "
       >
-        <li>
-          <a>Menu Item</a>
+        <li class="menu-title">
+          <span> Funds </span>
         </li>
         <li>
-          <a>Menu Item</a>
+          <a>
+            <i class="mr-2 fa fa-exchange-alt"></i>
+            Transactions
+          </a>
+        </li>
+        <li>
+          <a>
+            <i class="mr-2 fa fa-money-check-alt"></i>
+            Wallet
+          </a>
         </li>
       </ul>
     </div>

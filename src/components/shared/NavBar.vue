@@ -32,7 +32,7 @@
           "
         >
           <li>
-            <div class="p-3 text-sm text-center">{{ username }}</div>
+            <div class="p-3 text-sm text-center">{{ fullName }}</div>
           </li>
           <li>
             <a class="bg-base-200">My Account</a>
@@ -51,7 +51,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "NavBar",
   computed: {
-    ...mapGetters(["username"]),
+    ...mapGetters(["fullName"]),
   },
 };
 </script>

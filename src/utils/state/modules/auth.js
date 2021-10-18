@@ -11,6 +11,7 @@ const state = {
 const getters = {
   username: (state) => state.username,
   token: (state) => state.token,
+  fullName: (state) => `${state.first_name} ${state.last_name}`,
 };
 
 function getCookie(name) {

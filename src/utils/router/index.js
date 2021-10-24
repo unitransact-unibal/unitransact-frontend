@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import SignIn from "../../pages/auth/SignIn.vue";
 import StudentLanding from "../../pages/landings/StudentLanding.vue";
 import RegSchool from "../../pages/auth/RegSchool.vue";
+import MyAccount from "../../pages/auth/MyAccount.vue";
 
 const routes = [
   {
@@ -11,6 +12,10 @@ const routes = [
   {
     path: "/sign-in",
     component: SignIn,
+  },
+  {
+    path: "/my-account",
+    component: MyAccount,
   },
   {
     path: "/reg-school",

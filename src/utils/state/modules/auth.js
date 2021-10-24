@@ -43,6 +43,7 @@ const actions = {
         commit("setBio", response.data);
       })
       .catch((error) => {
+        router.replace("/sign-in");
         console.log(error);
       });
   },

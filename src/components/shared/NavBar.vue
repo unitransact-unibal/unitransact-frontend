@@ -35,7 +35,9 @@
             <div class="p-3 text-sm text-center">{{ fullName }}</div>
           </li>
           <li>
-            <a class="bg-base-200">My Account</a>
+            <router-link to="/my-account" class="bg-base-200">
+              My Account
+            </router-link>
           </li>
           <li>
             <a class="bg-base-200">Sign Out</a>

@@ -51,7 +51,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "NavBar",
   computed: {
-    ...mapGetters(["fullName"]),
+    ...mapGetters({ fullName: "auth/fullName" }),
   },
 };
 </script>

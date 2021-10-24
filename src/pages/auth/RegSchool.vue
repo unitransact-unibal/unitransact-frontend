@@ -93,6 +93,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import Base01 from "../../components/layouts/Base01.vue";
 import countries from "../../utils/data/countries";
 export default {
@@ -114,6 +115,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions({ getUsers: "auth/getUser" }),
     submit(e) {
       e.preventDefault();
       const fillThis = "This field should not be left empty";
@@ -131,6 +133,13 @@ export default {
         return;
       }
     },
+    test() {
+      console.log("Up and running");
+    },
+  },
+  created() {
+    console.log("Created, yay");
+    this.getUsers();
   },
 };
 </script>

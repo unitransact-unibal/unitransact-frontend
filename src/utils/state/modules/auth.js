@@ -1,5 +1,6 @@
 import axios from "axios";
 import router from "../../router";
+import getCookie from "../../cookies";
 const state = {
   username: "john-doe",
   first_name: "John",
@@ -13,22 +14,6 @@ const getters = {
   token: (state) => state.token,
   fullName: (state) => `${state.first_name} ${state.last_name}`,
 };
-
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      // Does this cookie string begin with the name we want?
-      if (cookie.substring(0, name.length + 1) === name + "=") {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
 
 const actions = {
   async authenticate({ commit }, credentials) {
@@ -74,6 +59,7 @@ const mutations = {
 };
 
 export default {
+  namespaced: true,
   state,
   getters,
   actions,

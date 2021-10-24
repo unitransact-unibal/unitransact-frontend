@@ -48,7 +48,6 @@
 
 <script>
 import { mapActions } from "vuex";
-import auth from "../../utils/state/modules/auth";
 export default {
   name: "SignIn",
   data() {
@@ -60,7 +59,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["authenticate"]),
+    ...mapActions({ authenticate: "auth/authenticate" }),
     signIn() {
       const fillThis = "This field should not be left empty";
       this.emailValidation = this.email === "" ? fillThis : "";

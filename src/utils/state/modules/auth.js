@@ -34,22 +34,13 @@ const actions = {
   },
   async getUser({ commit }) {
     const csrftoken = getCookie("csrftoken");
-    // attempt to restore token from session storage
-    let sessionToken = sessionStorage.getItem("token");
-    if (state.token === "") {
-      if (sessionToken !== null) {
-        console.log("session token", sessionToken);
-        commit("setToken", sessionToken);
-      }
-    }
+
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.withCredentials = true;
 
     await axios
-      .get("/auth/user/", {
-        headers: {
-          Authorization: state.token,
-          "X-CSRFToken": csrftoken,
-        },
-      })
+      .get("/auth/user/")
       .then((response) => {
         console.log(response);
         commit("setBio", response.data);

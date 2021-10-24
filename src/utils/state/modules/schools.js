@@ -26,6 +26,9 @@ const getters = {
   school: (state) => {
     let schoolDetails = [];
     for (let [key, value] of Object.entries(state)) {
+      if (key === "errors") {
+        continue;
+      }
       schoolDetails.push({ key: key, value: value });
     }
     return schoolDetails;

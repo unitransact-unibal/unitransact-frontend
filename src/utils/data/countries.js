@@ -245,4 +245,9 @@ const countries = [
   { name: "Zimbabwe", code: "ZW" },
 ];
 
-export default countries;
+function getCountryName(code) {
+  const country = countries.filter((item) => item.code === code);
+  return country[0].name;
+}
+
+export { countries, getCountryName };

@@ -99,7 +99,7 @@
 import { mapActions, mapGetters } from "vuex";
 import Base01 from "../../components/layouts/Base01.vue";
 import ErrorAlerts from "./ErrorAlerts.vue";
-import countries from "../../utils/data/countries";
+import { countries } from "../../utils/data/countries";
 export default {
   name: "RegSchool",
   components: {

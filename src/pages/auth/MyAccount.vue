@@ -7,16 +7,17 @@
       </router-link>
     </div>
 
-    {{ school_id }}
-    {{ school }}
-
     <div class="card bg-base-200 bg-opacity-60" v-if="school_id">
       <div class="card-body">
+        <div class="text-sm font-bold mb-2">School Details</div>
         <table class="table w-full table-zebra">
           <tbody>
             <tr v-for="item in school" :key="item.key">
               <th>{{ item.key }}</th>
-              <td>{{ item.value }}</td>
+              <td v-if="item.key === 'country'">
+                {{ getCountryName(item.value) }}
+              </td>
+              <td v-else>{{ item.value }}</td>
             </tr>
           </tbody>
         </table>
@@ -28,6 +29,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import Base01 from "../../components/layouts/Base01.vue";
+import { getCountryName } from "../../utils/data/countries";
 export default {
   name: "MyAccount",
   components: {
@@ -41,10 +43,11 @@ export default {
       getUser: "auth/getUser",
       getSchool: "schools/getSchool",
     }),
+    getCountryName,
   },
   async created() {
     await this.getUser();
-    this.getSchool();
+    await this.getSchool();
   },
 };
 </script>

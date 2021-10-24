@@ -1,4 +1,5 @@
 import axios from "axios";
+import getCookie from "../../cookies";
 
 const state = {
   id: "",
@@ -23,12 +24,19 @@ const getters = {
 };
 
 const actions = {
-  async createUser({ commit, rootGetters }, data) {
-    console.log(routGetters["auth/token"]);
-    return;
-    await axios.post("/schools", data).then((response) => {
-      console.log(response);
-    });
+  async createSchool({ commit, rootGetters }, data) {
+    const csrftoken = getCookie("csrftoken");
+    console.log(rootGetters["auth/token"]);
+    await axios
+      .post("/schools", data, {
+        headers: {
+          Authorization: state.token,
+          "X-CSRFToken": csrftoken,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      });
   },
 };
 

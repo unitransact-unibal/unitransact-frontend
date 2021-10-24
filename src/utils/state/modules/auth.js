@@ -21,6 +21,7 @@ const actions = {
       .post("/auth/login/", credentials)
       .then((response) => {
         commit("setToken", response.data.key);
+        sessionStorage.setItem("token", response.data.key);
         actions.getUser({ commit });
         router.push("/");
       })
@@ -31,6 +32,16 @@ const actions = {
   },
   async getUser({ commit }) {
     const csrftoken = getCookie("csrftoken");
+    // attempt to restore token from session storage
+    let sessionToken = sessionStorage.getItem("token");
+    if (state.token === "") {
+      if (sessionToken !== null) {
+        console.log("session token", sessionToken);
+        commit("setToken", sessionToken);
+        return;
+      }
+    }
+
     await axios
       .get("/auth/user/", {
         headers: {

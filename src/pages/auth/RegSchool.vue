@@ -115,7 +115,10 @@ export default {
     };
   },
   methods: {
-    ...mapActions({ getUsers: "auth/getUser" }),
+    ...mapActions({
+      getUser: "auth/getUser",
+      createSchool: "schools/createSchool",
+    }),
     submit(e) {
       e.preventDefault();
       const fillThis = "This field should not be left empty";
@@ -132,14 +135,20 @@ export default {
       ) {
         return;
       }
+
+      this.createSchool({
+        name: this.name,
+        address: this.address,
+        location: this.location,
+        country: this.country,
+      });
     },
     test() {
       console.log("Up and running");
     },
   },
   created() {
-    console.log("Created, yay");
-    this.getUsers();
+    this.getUser();
   },
 };
 </script>

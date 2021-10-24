@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import SignIn from "../../pages/auth/SignIn.vue";
 import StudentLanding from "../../pages/landings/StudentLanding.vue";
+import RegSchool from "../../pages/auth/RegSchool.vue";
 
 const routes = [
   {
@@ -10,6 +11,10 @@ const routes = [
   {
     path: "/sign-in",
     component: SignIn,
+  },
+  {
+    path: "/reg-school",
+    component: RegSchool,
   },
 ];
 

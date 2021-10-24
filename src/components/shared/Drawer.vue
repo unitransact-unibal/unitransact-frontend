@@ -1,8 +1,14 @@
 <template>
-  <div class="shadow bg-base-100 drawer drawer-mobile min-h-screen">
+  <div class="drawer drawer-mobile min-h-screen rounded-box">
     <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
     <div
-      class="drawer-content rounded-box bg-base-200 bg-opacity-50 shadow-2xl"
+      class="
+        drawer-content
+        rounded-box
+        bg-base-100 bg-opacity-50
+        shadow-2xl
+        p-6
+      "
     >
       <slot></slot>
     </div>

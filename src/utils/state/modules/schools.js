@@ -47,6 +47,27 @@ const actions = {
         }
       });
   },
+  async getSchool({ commit, rootGetters }) {
+    const userId = rootGetters["auth/user_id"];
+
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.withCredentials = true;
+
+    await axios
+      .get(`/schools/${userId}/`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        if (error.response && error.response.data) {
+          console.log(error.response.data);
+          commit("setErrors", error.response.data);
+        } else {
+          console.log(error);
+        }
+      });
+  },
 };
 
 const mutations = {

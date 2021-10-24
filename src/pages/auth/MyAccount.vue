@@ -10,11 +10,22 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import Base01 from "../../components/layouts/Base01.vue";
 export default {
   name: "MyAccount",
   components: {
     Base01,
+  },
+  methods: {
+    ...mapActions({
+      getUser: "auth/getUser",
+      getSchool: "schools/getSchool",
+    }),
+  },
+  async created() {
+    await this.getUser();
+    this.getSchool();
   },
 };
 </script>

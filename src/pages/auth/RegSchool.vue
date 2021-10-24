@@ -1,6 +1,7 @@
 <template>
   <Base01>
     <h1 class="text-2xl font-normal mb-2 px-2">Register School</h1>
+
     <div class="p-10 card bg-base-200 bg-opacity-60">
       <form class="w-auto justify-around" @submit="submit">
         <div class="w-full flex space-x-5">
@@ -89,11 +90,25 @@
         <button class="btn btn-primary mt-4">Register</button>
       </form>
     </div>
+
+    <div class="mt-5" v-for="error in errors" :key="error.key">
+      <div class="alert alert-error">
+        <div class="flex-1 flex items-center">
+          <i class="fas fa-ban mx-2 text-xl"></i>
+          <label>
+            <span class="mr-2 capitalize">{{ error.key }}:</span>
+            <span class="text-sm text-base-content text-opacity-60">
+              {{ error.value }}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
   </Base01>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Base01 from "../../components/layouts/Base01.vue";
 import countries from "../../utils/data/countries";
 export default {
@@ -113,6 +128,9 @@ export default {
       locationValidation: "",
       countryValidation: "",
     };
+  },
+  computed: {
+    ...mapGetters({ errors: "schools/errors" }),
   },
   methods: {
     ...mapActions({

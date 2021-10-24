@@ -10,6 +10,7 @@ const state = {
   user_id: -1,
   created_at: "",
   updated_at: "",
+  errors: [],
 };
 
 const getters = {
@@ -21,6 +22,7 @@ const getters = {
   user_id: (state) => state.user_id,
   created_at: (state) => state.created_at,
   updated_at: (state) => state.updated_at,
+  errors: (state) => state.errors,
 };
 
 const actions = {
@@ -37,12 +39,27 @@ const actions = {
         console.log(response);
       })
       .catch((error) => {
-        console.log(error.response.data);
+        if (error.response && error.response.data) {
+          console.log(error.response.data);
+          commit("setErrors", error.response.data);
+        } else {
+          console.log(error);
+        }
       });
   },
 };
 
-const mutations = {};
+const mutations = {
+  setErrors: (state, errors) => {
+    state.errors = [];
+    for (let [key, value] of Object.entries(errors)) {
+      key = key === "user_id" ? "user" : key;
+      for (let i in value) {
+        state.errors.push({ key: key, value: value[i] });
+      }
+    }
+  },
+};
 
 export default {
   namespaced: true,

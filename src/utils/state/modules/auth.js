@@ -2,6 +2,7 @@ import axios from "axios";
 import router from "../../router";
 import getCookie from "../../cookies";
 const state = {
+  id: "",
   username: "john-doe",
   first_name: "John",
   last_name: "Doe",
@@ -10,6 +11,7 @@ const state = {
 };
 
 const getters = {
+  user_id: (state) => state.id,
   username: (state) => state.username,
   token: (state) => state.token,
   fullName: (state) => `${state.first_name} ${state.last_name}`,
@@ -38,7 +40,6 @@ const actions = {
       if (sessionToken !== null) {
         console.log("session token", sessionToken);
         commit("setToken", sessionToken);
-        return;
       }
     }
 
@@ -63,7 +64,7 @@ const actions = {
 const mutations = {
   setToken: (state, token) => (state.token = "Token " + token),
   setBio: (state, details) => {
-    state.username = details.username;
+    (state.id = details.pk), (state.username = details.username);
     state.email = details.email;
     state.first_name = details.first_name;
     state.last_name = details.last_name;

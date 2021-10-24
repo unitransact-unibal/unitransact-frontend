@@ -25,17 +25,19 @@ const getters = {
 
 const actions = {
   async createSchool({ commit, rootGetters }, data) {
-    const csrftoken = getCookie("csrftoken");
-    console.log(rootGetters["auth/token"]);
+    const userId = rootGetters["auth/user_id"];
+
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.withCredentials = true;
+
     await axios
-      .post("/schools", data, {
-        headers: {
-          Authorization: state.token,
-          "X-CSRFToken": csrftoken,
-        },
-      })
+      .post("/schools/", { ...data, user_id: userId })
       .then((response) => {
         console.log(response);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
       });
   },
 };

@@ -9,11 +9,19 @@
 
     <div class="card bg-base-200 bg-opacity-60" v-if="school_id">
       <div class="card-body">
-        <div class="text-sm font-bold mb-2">School Details</div>
+        <div class="flex justify-between items-end mb-2">
+          <div class="font-bold">School Details</div>
+          <router-link to="edit-school" class="btn btn-sm btn-info">
+            <i class="fa fa-pencil mr-2 text-xs"></i>
+            Edit
+          </router-link>
+        </div>
         <table class="table w-full table-zebra">
           <tbody>
             <tr v-for="item in school" :key="item.key">
-              <th>{{ item.key }}</th>
+              <th class="capitalize text-sm">
+                {{ item.key.replaceAll("_", " ") }}
+              </th>
               <td v-if="item.key === 'country'">
                 {{ getCountryName(item.value) }}
               </td>

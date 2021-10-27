@@ -33,6 +33,16 @@ const getters = {
     }
     return schoolDetails;
   },
+  schoolObj: (state) => ({
+    id: state.id,
+    name: state.name,
+    address: state.address,
+    location: state.location,
+    country: state.country,
+    user_id: state.user_id,
+    created_at: state.created_at,
+    updated_at: state.updated_at,
+  }),
 };
 
 const actions = {

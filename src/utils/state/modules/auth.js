@@ -31,10 +31,10 @@ const actions = {
       })
       .catch((error) => {
         if (error.response && error.response.data) {
-          console.log(error.response.data);
+          console.log("authenticate", error.response.data);
           commit("setErrors", error.response.data);
         } else {
-          console.log(error);
+          console.log("authenticate", error);
         }
       });
     console.log("Authenticating", credentials);
@@ -47,12 +47,12 @@ const actions = {
     await axios
       .get("/auth/user/")
       .then((response) => {
-        console.log(response);
+        console.log("getUser", response);
         commit("setBio", response.data);
       })
       .catch((error) => {
         router.replace("/sign-in");
-        console.log(error);
+        console.log("getUser", error);
       });
   },
   async signOut() {
@@ -63,11 +63,11 @@ const actions = {
     await axios
       .post("/auth/logout/")
       .then((response) => {
-        console.log(response);
+        console.log("signOut", response);
         router.replace("/sign-in");
       })
       .catch((error) => {
-        console.log(error);
+        console.log("signOut", error);
         router.replace("/sign-in");
       });
   },

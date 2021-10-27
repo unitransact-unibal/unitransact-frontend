@@ -91,6 +91,8 @@
     </div>
 
     <ErrorAlerts :errors="errors" />
+    {{ successMsg }}
+    <SuccessAlert :message="successMsg" />
   </Base01>
 </template>
 
@@ -98,12 +100,14 @@
 import { mapActions, mapGetters } from "vuex";
 import Base01 from "../../components/layouts/Base01.vue";
 import ErrorAlerts from "../../components/shared/ErrorAlerts.vue";
+import SuccessAlert from "../../components/shared/SuccessAlert.vue";
 import { countries } from "../../utils/data/countries";
 export default {
   name: "EditSchool",
   components: {
     Base01,
     ErrorAlerts,
+    SuccessAlert,
   },
   data() {
     return {
@@ -119,7 +123,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ errors: "schools/errors", school: "schools/schoolObj" }),
+    ...mapGetters({
+      errors: "schools/errors",
+      successMsg: "schools/successMessage",
+      school: "schools/schoolObj",
+    }),
   },
   methods: {
     ...mapActions({

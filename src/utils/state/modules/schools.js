@@ -11,6 +11,7 @@ const state = {
   created_at: "",
   updated_at: "",
   errors: [],
+  success_message: "",
 };
 
 const getters = {
@@ -23,10 +24,11 @@ const getters = {
   created_at: (state) => state.created_at,
   updated_at: (state) => state.updated_at,
   errors: (state) => state.errors,
+  successMessage: (state) => state.success_message,
   school: (state) => {
     let schoolDetails = [];
     for (let [key, value] of Object.entries(state)) {
-      if (key === "errors") {
+      if (key === "errors" || key === "success_message") {
         continue;
       }
       schoolDetails.push({ key: key, value: value });
@@ -78,6 +80,7 @@ const actions = {
       .put(`/schools/${userId}/`, { ...data, user_id: userId })
       .then((response) => {
         console.log("updateSchool", response);
+        commit("setSuccessMessage", "Data saved successfully.");
       })
       .catch((error) => {
         if (error.response && error.response.data) {
@@ -127,6 +130,7 @@ const actions = {
 };
 
 const mutations = {
+  setSuccessMessage: (state, msg) => (state.success_message = msg),
   setErrors: (state, errors) => {
     state.errors = [];
     for (let [key, value] of Object.entries(errors)) {

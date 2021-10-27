@@ -125,7 +125,7 @@ export default {
     ...mapActions({
       getUser: "auth/getUser",
       getSchool: "schools/getSchool",
-      createSchool: "schools/createSchool",
+      updateSchool: "schools/updateSchool",
     }),
     submit(e) {
       e.preventDefault();
@@ -144,8 +144,7 @@ export default {
         return;
       }
 
-      return;
-      this.createSchool({
+      this.updateSchool({
         name: this.name,
         address: this.address,
         location: this.location,

@@ -56,14 +56,35 @@ const actions = {
     await axios
       .post("/schools/", { ...data, user_id: userId })
       .then((response) => {
-        console.log(response);
+        console.log("createSchool", response);
       })
       .catch((error) => {
         if (error.response && error.response.data) {
           console.log(error.response.data);
           commit("setErrors", error.response.data);
         } else {
-          console.log(error);
+          console.log("createSchool", error);
+        }
+      });
+  },
+  async updateSchool({ commit, rootGetters }, data) {
+    const userId = rootGetters["auth/user_id"];
+
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.withCredentials = true;
+
+    await axios
+      .put(`/schools/${userId}/`, { ...data, user_id: userId })
+      .then((response) => {
+        console.log("updateSchool", response);
+      })
+      .catch((error) => {
+        if (error.response && error.response.data) {
+          console.log(error.response.data);
+          commit("setErrors", error.response.data);
+        } else {
+          console.log("updateSchool", error);
         }
       });
   },
@@ -82,8 +103,8 @@ const actions = {
       })
       .catch((error) => {
         if (error.response && error.response.data) {
-          console.log(error.response.status);
-          console.log(error.response.data);
+          console.log("getSchool", error.response.status);
+          console.log("getSchool", error.response.data);
 
           if (error.response.status === 404) {
             commit("setSchool", {

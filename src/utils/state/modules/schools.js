@@ -81,6 +81,10 @@ const actions = {
       .then((response) => {
         console.log("updateSchool", response);
         commit("setSuccessMessage", "Data saved successfully.");
+        setTimeout(() => {
+          console.log("updateSchool", "clearing message");
+          commit("setSuccessMessage", "");
+        }, 5000);
       })
       .catch((error) => {
         if (error.response && error.response.data) {

@@ -91,7 +91,7 @@
     </div>
 
     <ErrorAlerts :errors="errors" />
-    {{ successMsg }}
+
     <SuccessAlert :message="successMsg" />
   </Base01>
 </template>

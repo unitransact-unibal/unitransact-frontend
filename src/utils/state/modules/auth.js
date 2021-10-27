@@ -25,7 +25,7 @@ const actions = {
       .post("/auth/login/", credentials)
       .then((response) => {
         commit("setToken", response.data.key);
-        sessionStorage.setItem("token", response.data.key);
+        // sessionStorage.setItem("token", response.data.key);
         actions.getUser({ commit });
         router.push("/");
       })
@@ -40,8 +40,6 @@ const actions = {
     console.log("Authenticating", credentials);
   },
   async getUser({ commit }) {
-    const csrftoken = getCookie("csrftoken");
-
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.withCredentials = true;
@@ -55,6 +53,22 @@ const actions = {
       .catch((error) => {
         router.replace("/sign-in");
         console.log(error);
+      });
+  },
+  async signOut() {
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.withCredentials = true;
+
+    await axios
+      .post("/auth/logout/")
+      .then((response) => {
+        console.log(response);
+        router.replace("/sign-in");
+      })
+      .catch((error) => {
+        console.log(error);
+        router.replace("/sign-in");
       });
   },
 };

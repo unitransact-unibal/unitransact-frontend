@@ -40,7 +40,7 @@
             </router-link>
           </li>
           <li>
-            <a class="bg-base-200">Sign Out</a>
+            <a class="bg-base-200" @click="signOut">Sign Out</a>
           </li>
         </ul>
       </div>
@@ -49,11 +49,14 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "NavBar",
   computed: {
     ...mapGetters({ fullName: "auth/fullName" }),
+  },
+  methods: {
+    ...mapActions({ signOut: "auth/signOut" }),
   },
 };
 </script>

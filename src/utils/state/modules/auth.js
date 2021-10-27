@@ -8,6 +8,7 @@ const state = {
   last_name: "Doe",
   email: "johndoe@gmail.com",
   token: "",
+  errors: [],
 };
 
 const getters = {
@@ -15,6 +16,7 @@ const getters = {
   username: (state) => state.username,
   token: (state) => state.token,
   fullName: (state) => `${state.first_name} ${state.last_name}`,
+  errors: (state) => state.errors,
 };
 
 const actions = {
@@ -28,7 +30,12 @@ const actions = {
         router.push("/");
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response && error.response.data) {
+          console.log(error.response.data);
+          commit("setErrors", error.response.data);
+        } else {
+          console.log(error);
+        }
       });
     console.log("Authenticating", credentials);
   },
@@ -53,6 +60,15 @@ const actions = {
 };
 
 const mutations = {
+  setErrors: (state, errors) => {
+    state.errors = [];
+    for (let [key, value] of Object.entries(errors)) {
+      key = key.replaceAll("_", " ");
+      for (let i in value) {
+        state.errors.push({ key: key, value: value[i] });
+      }
+    }
+  },
   setToken: (state, token) => (state.token = "Token " + token),
   setBio: (state, details) => {
     (state.id = details.pk), (state.username = details.username);

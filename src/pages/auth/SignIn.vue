@@ -42,14 +42,19 @@
           </div>
         </div>
       </div>
+      <ErrorAlertsAlt :errors="errors" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import ErrorAlertsAlt from "../../components/shared/ErrorAlertsAlt.vue";
 export default {
   name: "SignIn",
+  components: {
+    ErrorAlertsAlt,
+  },
   data() {
     return {
       email: "",
@@ -57,6 +62,9 @@ export default {
       emailValidation: "",
       passValidation: "",
     };
+  },
+  computed: {
+    ...mapGetters({ errors: "auth/errors" }),
   },
   methods: {
     ...mapActions({ authenticate: "auth/authenticate" }),

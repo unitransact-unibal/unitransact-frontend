@@ -11,7 +11,7 @@
           Register School
         </router-link>
         <router-link
-          to="/reg-school"
+          to="/reg-parent"
           class="btn btn-sm btn-outline btn-info"
           v-if="!parent_id"
         >

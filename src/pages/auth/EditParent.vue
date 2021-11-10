@@ -92,6 +92,8 @@
     </div>
 
     <ErrorAlerts :errors="errors" />
+
+    <SuccessAlert :message="successMsg" />
   </Base01>
 </template>
 
@@ -99,12 +101,14 @@
 import { mapActions, mapGetters } from "vuex";
 import Base01 from "../../components/layouts/Base01.vue";
 import ErrorAlerts from "../../components/shared/ErrorAlerts.vue";
+import SuccessAlert from "../../components/shared/SuccessAlert.vue";
 import { countries } from "../../utils/data/countries";
 export default {
   name: "EditParent",
   components: {
     Base01,
     ErrorAlerts,
+    SuccessAlert,
   },
   data() {
     return {
@@ -120,12 +124,17 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ errors: "parents/errors" }),
+    ...mapGetters({
+      errors: "parents/errors",
+      successMsg: "parents/successMessage",
+      parent: "parents/parentObj",
+    }),
   },
   methods: {
     ...mapActions({
       getUser: "auth/getUser",
-      createParent: "parents/createParent",
+      getParent: "parents/getParent",
+      updateParent: "parents/updateParent",
     }),
     submit(e) {
       e.preventDefault();
@@ -153,8 +162,13 @@ export default {
       });
     },
   },
-  created() {
-    this.getUser();
+  async created() {
+    await this.getUser();
+    await this.getParent();
+    this.nationalId = this.parent.national_id;
+    this.telephone = this.parent.telephone;
+    this.address = this.parent.address;
+    this.country = this.parent.country;
   },
 };
 </script>

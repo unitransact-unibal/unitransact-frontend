@@ -113,7 +113,7 @@ const actions = {
           console.log("getParent", error.response.data);
 
           if (error.response.status === 404) {
-            commit("getParent", {
+            commit("setParent", {
               id: "",
               national_id: "",
               telephone: "",

@@ -117,6 +117,22 @@ export default {
   methods: {
     submit(e) {
       e.preventDefault();
+
+      const fillThis = "This field should not be left empty";
+      this.nationalIdValidation = this.nationalId === "" ? fillThis : "";
+      this.telephoneValidation = this.telephone === "" ? fillThis : "";
+      this.addressValidation = this.address === "" ? fillThis : "";
+      this.countryValidation = this.country === "" ? fillThis : "";
+
+      if (
+        this.nameValidation !== "" ||
+        this.addressValidation !== "" ||
+        this.locationValidation !== "" ||
+        this.countryValidation !== ""
+      ) {
+        return;
+      }
+
       console.log("submitting");
     },
   },

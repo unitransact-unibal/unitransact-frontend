@@ -52,7 +52,7 @@
       <div class="card-body">
         <div class="flex justify-between items-end mb-2">
           <div class="font-bold">Parent Details</div>
-          <router-link to="edit-school" class="btn btn-sm btn-info">
+          <router-link to="edit-parent" class="btn btn-sm btn-info">
             <i class="fa fa-pencil mr-2 text-xs"></i>
             Edit
           </router-link>

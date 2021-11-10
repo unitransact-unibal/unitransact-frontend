@@ -145,8 +145,6 @@ export default {
         return;
       }
 
-      console.log("submitting");
-
       this.createParent({
         national_id: this.nationalId,
         telephone: this.telephone,

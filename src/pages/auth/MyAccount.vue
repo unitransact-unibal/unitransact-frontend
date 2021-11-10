@@ -1,10 +1,22 @@
 <template>
   <Base01>
-    <h1 class="text-2xl font-normal mb-2 px-2">My Account</h1>
-    <div class="btn-group">
-      <router-link to="/reg-school" class="btn btn-info" v-if="!school_id">
-        Register School
-      </router-link>
+    <div class="flex justify-between items-end mb-2">
+      <h1 class="text-2xl font-normal px-2">My Account</h1>
+      <div class="btn-group">
+        <router-link
+          to="/reg-school"
+          class="btn btn-sm btn-outline btn-info"
+          v-if="!school_id"
+        >
+          Register School
+        </router-link>
+        <router-link to="/reg-school" class="btn btn-sm btn-outline btn-info">
+          Register Parent
+        </router-link>
+        <router-link to="/reg-school" class="btn btn-sm btn-outline btn-info">
+          Register Student
+        </router-link>
+      </div>
     </div>
 
     <div class="card bg-base-200 bg-opacity-60" v-if="school_id">

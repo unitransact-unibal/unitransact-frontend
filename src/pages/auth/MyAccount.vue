@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <div class="card bg-base-200 bg-opacity-60 mx-4" v-if="school_id">
+    <div class="card bg-base-200 bg-opacity-60 mb-4" v-if="school_id">
       <div class="card-body">
         <div class="flex justify-between items-end mb-2">
           <div class="font-bold">School Details</div>
@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <div class="card bg-base-200 bg-opacity-60 mx-4" v-if="parent_id">
+    <div class="card bg-base-200 bg-opacity-60 mb-4" v-if="parent_id">
       <div class="card-body">
         <div class="flex justify-between items-end mb-2">
           <div class="font-bold">Parent Details</div>

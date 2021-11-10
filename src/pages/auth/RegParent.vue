@@ -90,16 +90,21 @@
         <button class="btn btn-primary mt-4">Register</button>
       </form>
     </div>
+
+    <ErrorAlerts :errors="errors" />
   </Base01>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import Base01 from "../../components/layouts/Base01.vue";
+import ErrorAlerts from "../../components/shared/ErrorAlerts.vue";
 import { countries } from "../../utils/data/countries";
 export default {
   name: "RegParent",
   components: {
     Base01,
+    ErrorAlerts,
   },
   data() {
     return {
@@ -114,7 +119,14 @@ export default {
       countryValidation: "",
     };
   },
+  computed: {
+    ...mapGetters({ errors: "parents/errors" }),
+  },
   methods: {
+    ...mapActions({
+      getUser: "auth/getUser",
+      createParent: "parents/createParent",
+    }),
     submit(e) {
       e.preventDefault();
 
@@ -125,15 +137,22 @@ export default {
       this.countryValidation = this.country === "" ? fillThis : "";
 
       if (
-        this.nameValidation !== "" ||
+        this.nationalIdValidation !== "" ||
         this.addressValidation !== "" ||
-        this.locationValidation !== "" ||
+        this.telephoneValidation !== "" ||
         this.countryValidation !== ""
       ) {
         return;
       }
 
       console.log("submitting");
+
+      this.createParent({
+        // national_id: this.nationalId,
+        telephone: this.telephone,
+        address: this.address,
+        country: this.country,
+      });
     },
   },
 };

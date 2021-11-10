@@ -94,7 +94,7 @@ const actions = {
         }
       });
   },
-  async updateParent({ commit, rootGetters }) {
+  async getParent({ commit, rootGetters }) {
     const userId = rootGetters["auth/user_id"];
 
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
@@ -104,16 +104,16 @@ const actions = {
     await axios
       .get(`/parents/${userId}/`)
       .then((response) => {
-        console.log("updateParent", response);
+        console.log("getParent", response);
         commit("setParent", response.data);
       })
       .catch((error) => {
         if (error.response && error.response.data) {
-          console.log("updateParent", error.response.status);
-          console.log("updateParent", error.response.data);
+          console.log("getParent", error.response.status);
+          console.log("getParent", error.response.data);
 
           if (error.response.status === 404) {
-            commit("setParent", {
+            commit("getParent", {
               id: "",
               national_id: "",
               telephone: "",

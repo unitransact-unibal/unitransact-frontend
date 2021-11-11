@@ -27,14 +27,12 @@
           <tbody>
             <tr v-for="item in studentParentList" :key="item.id">
               <td>{{ item.id }}</td>
-              <td>{{ item.student_id.id }}</td>
+              <td>{{ item.student_id }}</td>
               <td>
-                {{ item.student_id.first_name }} {{ item.student_id.last_name }}
+                {{ item.student_first_name }} {{ item.student_last_name }}
               </td>
-              <td>{{ item.parent_id.id }}</td>
-              <td>
-                {{ item.parent_id.first_name }} {{ item.parent_id.last_name }}
-              </td>
+              <td>{{ item.parent_id }}</td>
+              <td>{{ item.parent_first_name }} {{ item.parent_last_name }}</td>
               <td>{{ item.created_at }}</td>
               <td>{{ item.updated_at }}</td>
               <td>

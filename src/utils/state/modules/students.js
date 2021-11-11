@@ -82,7 +82,7 @@ const actions = {
     axios.defaults.withCredentials = true;
 
     await axios
-      .put(`/parents/${userId}/`, { ...data, user_id: userId })
+      .put(`/students/${userId}/`, { ...data, user_id: userId })
       .then((response) => {
         console.log("updateStudent", response);
         commit("setSuccessMessage", "Data saved successfully.");
@@ -108,7 +108,7 @@ const actions = {
     axios.defaults.withCredentials = true;
 
     await axios
-      .get(`/parents/${userId}/`)
+      .get(`/students/${userId}/`)
       .then((response) => {
         console.log("getStudent", response);
         commit("setStudent", response.data);

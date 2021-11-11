@@ -17,7 +17,11 @@
         >
           Register Parent
         </router-link>
-        <router-link to="/reg-school" class="btn btn-sm btn-outline btn-info">
+        <router-link
+          to="/reg-school"
+          class="btn btn-sm btn-outline btn-info"
+          v-if="!student_id"
+        >
           Register Student
         </router-link>
       </div>
@@ -72,6 +76,31 @@
         </table>
       </div>
     </div>
+
+    <div class="card bg-base-200 bg-opacity-60 mb-4" v-if="student_id">
+      <div class="card-body">
+        <div class="flex justify-between items-end mb-2">
+          <div class="font-bold">Student Details</div>
+          <router-link to="edit-parent" class="btn btn-sm btn-info">
+            <i class="fa fa-pencil mr-2 text-xs"></i>
+            Edit
+          </router-link>
+        </div>
+        <table class="table w-full table-zebra">
+          <tbody>
+            <tr v-for="item in student" :key="item.key">
+              <th class="capitalize text-sm">
+                {{ item.key.replaceAll("_", " ") }}
+              </th>
+              <td v-if="item.key === 'country'">
+                {{ getCountryName(item.value) }}
+              </td>
+              <td v-else>{{ item.value }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </Base01>
 </template>
 
@@ -90,6 +119,8 @@ export default {
       school: "schools/school",
       parent_id: "parents/id",
       parent: "parents/parent",
+      student_id: "students/id",
+      student: "students/student",
     }),
   },
   methods: {
@@ -97,6 +128,7 @@ export default {
       getUser: "auth/getUser",
       getSchool: "schools/getSchool",
       getParent: "parents/getParent",
+      getStudent: "students/getStudent",
     }),
     getCountryName,
   },
@@ -104,6 +136,7 @@ export default {
     await this.getUser();
     await this.getSchool();
     await this.getParent();
+    await this.getStudent();
   },
 };
 </script>

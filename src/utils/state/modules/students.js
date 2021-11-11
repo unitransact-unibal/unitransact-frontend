@@ -112,6 +112,7 @@ const actions = {
       .then((response) => {
         console.log("getStudent", response);
         commit("setStudent", response.data);
+        commit("setErrors", {});
       })
       .catch((error) => {
         if (error.response && error.response.data) {

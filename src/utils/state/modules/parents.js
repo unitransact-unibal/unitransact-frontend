@@ -106,6 +106,7 @@ const actions = {
       .then((response) => {
         console.log("getParent", response);
         commit("setParent", response.data);
+        commit("setErrors", {});
       })
       .catch((error) => {
         if (error.response && error.response.data) {

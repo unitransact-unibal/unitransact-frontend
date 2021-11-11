@@ -1,6 +1,6 @@
 <template>
   <Base01>
-    <h1 class="text-2xl font-normal mb-2 px-2">Register Student</h1>
+    <h1 class="text-2xl font-normal mb-2 px-2">Edit Student</h1>
 
     <div class="p-10 card bg-base-200 bg-opacity-66">
       <form class="w-auto justify-around" @submit="submit">
@@ -125,11 +125,13 @@
           </div>
         </div>
 
-        <button class="btn btn-primary mt-4">Register</button>
+        <button class="btn btn-primary mt-4">Save</button>
       </form>
     </div>
 
     <ErrorAlerts :errors="errors" />
+
+    <SuccessAlert :message="successMsg" />
   </Base01>
 </template>
 
@@ -137,12 +139,14 @@
 import { mapActions, mapGetters } from "vuex";
 import Base01 from "../../components/layouts/Base01.vue";
 import ErrorAlerts from "../../components/shared/ErrorAlerts.vue";
+import SuccessAlert from "../../components/shared/SuccessAlert.vue";
 import { countries } from "../../utils/data/countries";
 export default {
   name: "RegStudent",
   components: {
     Base01,
     ErrorAlerts,
+    SuccessAlert,
   },
   data() {
     return {
@@ -162,12 +166,17 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ errors: "students/errors" }),
+    ...mapGetters({
+      errors: "students/errors",
+      successMsg: "students/successMessage",
+      student: "students/studentObj",
+    }),
   },
   methods: {
     ...mapActions({
       getUser: "auth/getUser",
-      createStudent: "students/createStudent",
+      updateStudent: "students/updateStudent",
+      getStudent: "students/getStudent",
     }),
     submit(e) {
       e.preventDefault();
@@ -191,7 +200,7 @@ export default {
         return;
       }
 
-      this.createStudent({
+      this.updateStudent({
         admission_number: this.admNo,
         school_id: this.schoolId,
         address: this.address,
@@ -203,6 +212,13 @@ export default {
   },
   async created() {
     await this.getUser();
+    await this.getStudent();
+    this.admNo = this.student.admission_number;
+    this.schoolId = this.student.school_id;
+    this.dob = this.student.date_of_birth;
+    this.telephone = this.student.telephone;
+    this.address = this.student.address;
+    this.country = this.student.country;
   },
 };
 </script>

@@ -128,6 +128,8 @@
         <button class="btn btn-primary mt-4">Register</button>
       </form>
     </div>
+
+    <ErrorAlerts :errors="errors" />
   </Base01>
 </template>
 
@@ -169,6 +171,26 @@ export default {
     }),
     submit(e) {
       e.preventDefault();
+
+      const fillThis = "This field should not be left empty";
+      this.admNoValidation = this.admNo === "" ? fillThis : "";
+      this.schoolIdValidation = this.schoolId === "" ? fillThis : "";
+      this.dobValidation = this.dob === "" ? fillThis : "";
+      this.telephoneValidation = this.telephone === "" ? fillThis : "";
+      this.addressValidation = this.address === "" ? fillThis : "";
+      this.countryValidation = this.country === "" ? fillThis : "";
+
+      if (
+        this.admNoValidation !== "" ||
+        this.schoolIdValidation !== "" ||
+        this.dobValidation !== "" ||
+        this.addressValidation !== "" ||
+        this.telephoneValidation !== "" ||
+        this.countryValidation !== ""
+      ) {
+        return;
+      }
+
       console.log("submitting");
     },
   },

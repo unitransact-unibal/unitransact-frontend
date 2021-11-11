@@ -6,6 +6,7 @@ import EditSchool from "../../pages/auth/EditSchool.vue";
 import MyAccount from "../../pages/auth/MyAccount.vue";
 import RegParent from "../../pages/auth/RegParent.vue";
 import EditParent from "../../pages/auth/EditParent.vue";
+import RegStudent from "../../pages/auth/RegStudent.vue";
 
 const routes = [
   {
@@ -35,6 +36,10 @@ const routes = [
   {
     path: "/edit-parent",
     component: EditParent,
+  },
+  {
+    path: "/reg-student",
+    component: RegStudent,
   },
 ];
 

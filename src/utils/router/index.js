@@ -8,6 +8,7 @@ import RegParent from "../../pages/auth/RegParent.vue";
 import EditParent from "../../pages/auth/EditParent.vue";
 import RegStudent from "../../pages/auth/RegStudent.vue";
 import EditStudent from "../../pages/auth/EditStudent.vue";
+import ListStudentParents from "../../pages/students/ListStudentParents.vue";
 
 const routes = [
   {
@@ -45,6 +46,10 @@ const routes = [
   {
     path: "/edit-student",
     component: EditStudent,
+  },
+  {
+    path: "/student-parents",
+    component: ListStudentParents,
   },
 ];
 

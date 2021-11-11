@@ -81,10 +81,16 @@
       <div class="card-body">
         <div class="flex justify-between items-end mb-2">
           <div class="font-bold">Student Details</div>
-          <router-link to="edit-student" class="btn btn-sm btn-info">
-            <i class="fa fa-pencil mr-2 text-xs"></i>
-            Edit
-          </router-link>
+          <div class="flex justify-end space-x-2">
+            <router-link to="edit-student" class="btn btn-sm btn-info">
+              <i class="fa fa-pencil mr-2 text-xs"></i>
+              Edit
+            </router-link>
+            <router-link to="student-parents" class="btn btn-sm btn-info">
+              <i class="fa fa-user-friends mr-2 text-xs"></i>
+              Your Parents
+            </router-link>
+          </div>
         </div>
         <table class="table w-full table-zebra">
           <tbody>

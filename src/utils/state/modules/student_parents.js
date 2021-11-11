@@ -134,18 +134,6 @@ const actions = {
         if (error.response && error.response.data) {
           console.log("getStudentParentList", error.response.status);
           console.log("getStudentParentList", error.response.data);
-
-          if (error.response.status === 404) {
-            commit("setStudent", {
-              id: "",
-              student_id: "",
-              parent_id: "",
-              created_at: "",
-              updated_at: "",
-              errors: [],
-              success_message: "",
-            });
-          }
         } else {
           console.log(error);
         }

@@ -9,6 +9,7 @@ const state = {
   user_id: -1,
   created_at: "",
   updated_at: "",
+  parent_list: [],
   errors: [],
   success_message: "",
 };
@@ -22,6 +23,7 @@ const getters = {
   user_id: (state) => state.user_id,
   created_at: (state) => state.created_at,
   updated_at: (state) => state.updated_at,
+  parent_list: (state) => state.parent_list,
   errors: (state) => state.errors,
   successMessage: (state) => state.success_message,
   parent: (state) => {
@@ -132,6 +134,27 @@ const actions = {
         }
       });
   },
+  async getParentList({ commit }) {
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.withCredentials = true;
+
+    await axios
+      .get(`/parents/`)
+      .then((response) => {
+        console.log("getParentList", response);
+        commit("setParentList", response.data);
+        commit("setErrors", {});
+      })
+      .catch((error) => {
+        if (error.response && error.response.data) {
+          console.log("getParentList", error.response.status);
+          console.log("getParentList", error.response.data);
+        } else {
+          console.log(error);
+        }
+      });
+  },
 };
 
 const mutations = {
@@ -155,6 +178,7 @@ const mutations = {
     state.created_at = details.created_at;
     state.updated_at = details.updated_at;
   },
+  setParentList: (state, data) => (state.parent_list = [...data]),
 };
 
 export default {

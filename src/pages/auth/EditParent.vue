@@ -87,7 +87,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary mt-4">Register</button>
+        <button class="btn btn-primary mt-4">Save</button>
       </form>
     </div>
 
@@ -154,7 +154,7 @@ export default {
         return;
       }
 
-      this.createParent({
+      this.updateParent({
         national_id: this.nationalId,
         telephone: this.telephone,
         address: this.address,

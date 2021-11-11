@@ -191,7 +191,14 @@ export default {
         return;
       }
 
-      console.log("submitting");
+      this.createStudent({
+        admission_number: this.admNo,
+        school_id: this.schoolId,
+        address: this.address,
+        date_of_birth: this.dob,
+        telephone: this.telephone,
+        country: this.country,
+      });
     },
   },
 };

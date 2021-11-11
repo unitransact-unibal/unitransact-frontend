@@ -7,7 +7,7 @@
         <div class="flex justify-between items-end mb-2">
           <div class="font-bold">Parents</div>
           <div class="flex justify-end space-x-2">
-            <router-link to="edit-parent" class="btn btn-sm btn-info">
+            <router-link to="student-parents-add" class="btn btn-sm btn-info">
               <i class="fa fa-plus mr-2 text-xs"></i>
               Add
             </router-link>

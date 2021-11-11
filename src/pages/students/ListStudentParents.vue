@@ -17,6 +17,7 @@
           <thead>
             <th>#</th>
             <th>Student Id</th>
+            <th>Student Name</th>
             <th>Parent Id</th>
             <th>Parent Name</th>
             <th>Created At</th>
@@ -26,7 +27,10 @@
           <tbody>
             <tr v-for="item in studentParentList" :key="item.id">
               <td>{{ item.id }}</td>
-              <td>{{ item.student_id }}</td>
+              <td>{{ item.student_id.id }}</td>
+              <td>
+                {{ item.student_id.first_name }} {{ item.student_id.last_name }}
+              </td>
               <td>{{ item.parent_id.id }}</td>
               <td>
                 {{ item.parent_id.first_name }} {{ item.parent_id.last_name }}

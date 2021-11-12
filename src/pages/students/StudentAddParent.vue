@@ -33,12 +33,15 @@
         <button class="btn btn-primary mt-4">Save</button>
       </form>
     </div>
+
+    <ErrorAlerts :errors="errors" />
   </Base01>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
 import Base01 from "../../components/layouts/Base01.vue";
+import ErrorAlerts from "../../components/shared/ErrorAlerts.vue";
 export default {
   name: "StudentAddParent",
   data() {
@@ -49,9 +52,11 @@ export default {
   },
   components: {
     Base01,
+    ErrorAlerts,
   },
   computed: {
     ...mapGetters({
+      errors: "student_parents/errors",
       parentList: "parents/parent_list",
       student: "students/studentObj",
     }),

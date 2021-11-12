@@ -51,6 +51,7 @@ const actions = {
       .post("/students/parents/", { ...data })
       .then((response) => {
         console.log("createStudentParent", response);
+        commit("setErrors", {});
       })
       .catch((error) => {
         if (error.response && error.response.data) {
@@ -113,6 +114,26 @@ const actions = {
               success_message: "",
             });
           }
+        } else {
+          console.log(error);
+        }
+      });
+  },
+  async deleteStudentParent({ commit }, id) {
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.withCredentials = true;
+
+    await axios
+      .delete(`/students/parents/${id}/`)
+      .then((response) => {
+        console.log("deleteStudentParent", response);
+        commit("setErrors", {});
+      })
+      .catch((error) => {
+        if (error.response && error.response.data) {
+          console.log("deleteStudentParent", error.response.status);
+          console.log("deleteStudentParent", error.response.data);
         } else {
           console.log(error);
         }

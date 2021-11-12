@@ -43,12 +43,13 @@
                   >
                     <i class="fa fa-pencil text-xs"></i>
                   </router-link>
-                  <router-link
+                  <button
                     to="edit-parent"
                     class="btn btn-circle btn-sm btn-error"
+                    @click="deleteItem(item.id)"
                   >
                     <i class="fa fa-trash-alt text-xs"></i>
-                  </router-link>
+                  </button>
                 </div>
               </td>
             </tr>
@@ -79,7 +80,16 @@ export default {
       getUser: "auth/getUser",
       getStudent: "students/getStudent",
       getStudentParentList: "student_parents/getStudentParentList",
+      deleteStudentParent: "student_parents/deleteStudentParent",
     }),
+    async deleteItem(id) {
+      if (!confirm(`Delete record number ${id}?`)) {
+        return;
+      }
+      console.log("deleting", id);
+      await this.deleteStudentParent(id);
+      this.getStudentParentList(this.student.id);
+    },
   },
   async created() {
     await this.getUser();

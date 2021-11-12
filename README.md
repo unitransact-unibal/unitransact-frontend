@@ -1,7 +1,28 @@
-# Vue 3 + Vite
+# Actnium Veauty
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+- Part of the `actinium project`.
+- Built using [Vue 3](https://v3.vuejs.org/guide/introduction.html), [Vite](https://vitejs.dev/guide/), [daisyUI](https://daisyui.com/), lots of blood, sweat, and love :).
 
-## Recommended IDE Setup
+### Recommended IDE Setup
 
 - [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+
+### License
+
+```ascii
+actinium veauty
+Copyright (C) 2021  Contributors
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+```

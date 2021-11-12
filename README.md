@@ -1,4 +1,4 @@
-# Actnium Veauty
+# Actinium Veauty
 
 - Part of the `actinium project`.
 - Built using [Vue 3](https://v3.vuejs.org/guide/introduction.html), [Vite](https://vitejs.dev/guide/), [daisyUI](https://daisyui.com/), lots of blood, sweat, and love :).

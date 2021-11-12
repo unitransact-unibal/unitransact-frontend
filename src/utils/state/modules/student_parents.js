@@ -95,7 +95,7 @@ const actions = {
       .get(`/students/parents/${id}/`)
       .then((response) => {
         console.log("getStudentParent", response);
-        commit("setStudentParentList", response.data);
+        commit("setStudentParent", response.data);
         commit("setErrors", {});
       })
       .catch((error) => {

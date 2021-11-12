@@ -4,30 +4,60 @@
 
     <div class="p-10 card bg-base-200 bg-opacity-66">
       <form class="w-auto justify-around" @submit="submit">
-        <!--field-->
-        <div class="form-control w-12/12">
-          <label class="label">
-            <span class="label-text">Parent</span>
-          </label>
+        <div class="w-full flex space-x-5">
+          <!--field-->
+          <div class="form-control w-6/12">
+            <label class="label">
+              <span class="label-text">Id</span>
+            </label>
+            <input
+              type="text"
+              placeholder="record id"
+              class="input"
+              v-model="id"
+              readonly
+            />
+          </div>
 
-          <select
-            class="select"
-            :class="{ 'select-error select-bordered': parentIdValidation }"
-            v-model="parentId"
-          >
-            <option value="" disabled="disabled" selected="selected">
-              parent
-            </option>
-            <option v-for="pt in parentList" :key="pt.id" :value="pt.id">
-              {{ pt.national_id }}: {{ pt.first_name }} {{ pt.last_name }}
-            </option>
-          </select>
+          <div class="form-control w-6/12">
+            <label class="label">
+              <span class="label-text">Student Id</span>
+            </label>
+            <input
+              type="text"
+              placeholder="record id"
+              class="input"
+              :value="studentParent.student_id"
+              readonly
+            />
+          </div>
+        </div>
 
-          <label class="label" v-if="parentIdValidation">
-            <span class="label-text-alt text-error">
-              {{ parentIdValidation }}
-            </span>
-          </label>
+        <div class="w-full flex space-x-5 mt-1">
+          <div class="form-control w-full">
+            <label class="label">
+              <span class="label-text">Parent</span>
+            </label>
+
+            <select
+              class="select"
+              :class="{ 'select-error select-bordered': parentIdValidation }"
+              v-model="parentId"
+            >
+              <option value="" disabled="disabled" selected="selected">
+                parent
+              </option>
+              <option v-for="pt in parentList" :key="pt.id" :value="pt.id">
+                {{ pt.national_id }}: {{ pt.first_name }} {{ pt.last_name }}
+              </option>
+            </select>
+
+            <label class="label" v-if="parentIdValidation">
+              <span class="label-text-alt text-error">
+                {{ parentIdValidation }}
+              </span>
+            </label>
+          </div>
         </div>
 
         <button class="btn btn-primary mt-4">Save</button>

@@ -38,7 +38,10 @@
               <td>
                 <div class="space-x-2">
                   <router-link
-                    to="edit-parent"
+                    :to="{
+                      name: 'student-parent-edit',
+                      params: { id: item.id },
+                    }"
                     class="btn btn-circle btn-sm btn-info"
                   >
                     <i class="fa fa-pencil text-xs"></i>

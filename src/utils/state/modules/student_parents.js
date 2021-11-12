@@ -48,7 +48,7 @@ const actions = {
     axios.defaults.withCredentials = true;
 
     await axios
-      .post("/students/", { ...data })
+      .post("/students/parents/", { ...data })
       .then((response) => {
         console.log("createStudentParent", response);
       })
@@ -67,7 +67,7 @@ const actions = {
     axios.defaults.withCredentials = true;
 
     await axios
-      .put(`/students/${id}/`, { ...data })
+      .put(`/students/parents/${id}/`, { ...data })
       .then((response) => {
         console.log("updateStudentParent", response);
         commit("setSuccessMessage", "Data saved successfully.");
@@ -91,7 +91,7 @@ const actions = {
     axios.defaults.withCredentials = true;
 
     await axios
-      .get(`/students/${id}/`)
+      .get(`/students/parents/${id}/`)
       .then((response) => {
         console.log("getStudentParent", response);
         commit("setStudentParentList", response.data);

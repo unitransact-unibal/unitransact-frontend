@@ -5,7 +5,7 @@
     <div class="p-10 card bg-base-200 bg-opacity-66">
       <form class="w-auto justify-around" @submit="submit">
         <!--field-->
-        <div class="form-control w-6/12">
+        <div class="form-control w-12/12">
           <label class="label">
             <span class="label-text">Parent</span>
           </label>
@@ -29,6 +29,8 @@
             </span>
           </label>
         </div>
+
+        <button class="btn btn-primary mt-4">Save</button>
       </form>
     </div>
   </Base01>
@@ -51,20 +53,35 @@ export default {
   computed: {
     ...mapGetters({
       parentList: "parents/parent_list",
+      student: "students/studentObj",
     }),
   },
   methods: {
     ...mapActions({
       getUser: "auth/getUser",
+      getStudent: "students/getStudent",
       getParentList: "parents/getParentList",
+      createStudentParent: "student_parents/createStudentParent",
     }),
     submit(e) {
       e.preventDefault();
-      console.log("Submitting");
+
+      const fillThis = "This field should not be left empty";
+      this.parentIdValidation = this.parentId === "" ? fillThis : "";
+
+      if (this.parentIdValidation !== "") {
+        return;
+      }
+
+      this.createStudentParent({
+        student_id: this.student.id,
+        parent_id: this.parentId,
+      });
     },
   },
   async created() {
     await this.getUser();
+    await this.getStudent();
     await this.getParentList();
   },
 };

@@ -10,7 +10,7 @@
 ### License
 
 ```ascii
-actinium veauty
+Actinium Veauty
 Copyright (C) 2021  Contributors
 
 This program is free software: you can redistribute it and/or modify

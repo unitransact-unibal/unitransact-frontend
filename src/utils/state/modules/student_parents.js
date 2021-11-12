@@ -62,16 +62,20 @@ const actions = {
         }
       });
   },
-  async updateStudentParent({ commit, rootGetters }, data, id) {
+  async updateStudentParent({ commit, rootGetters }, data) {
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.withCredentials = true;
 
+    const { id, ...toSend } = data;
+    console.log("Rasta", id);
+
     await axios
-      .put(`/students/parents/${id}/`, { ...data })
+      .put(`/students/parents/${id}/`, { ...toSend })
       .then((response) => {
         console.log("updateStudentParent", response);
         commit("setSuccessMessage", "Data saved successfully.");
+        commit("setErrors", {});
         setTimeout(() => {
           console.log("updateStudentParent", "clearing message");
           commit("setSuccessMessage", "");

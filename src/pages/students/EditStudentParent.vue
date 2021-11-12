@@ -65,6 +65,8 @@
     </div>
 
     <ErrorAlerts :errors="errors" />
+
+    <SuccessAlert :message="successMsg" />
   </Base01>
 </template>
 
@@ -72,9 +74,15 @@
 import { mapActions, mapGetters } from "vuex";
 import Base01 from "../../components/layouts/Base01.vue";
 import ErrorAlerts from "../../components/shared/ErrorAlerts.vue";
+import SuccessAlert from "../../components/shared/SuccessAlert.vue";
+
 export default {
   name: "EditStudentParent",
-  components: { Base01, ErrorAlerts },
+  components: {
+    Base01,
+    ErrorAlerts,
+    SuccessAlert,
+  },
   data() {
     return {
       id: "",
@@ -85,19 +93,40 @@ export default {
   computed: {
     ...mapGetters({
       errors: "student_parents/errors",
-      studentParent: "student_parents/studentParentObj",
+      successMsg: "student_parents/successMessage",
+      student: "students/studentObj",
       parentList: "parents/parent_list",
+      studentParent: "student_parents/studentParentObj",
     }),
   },
   methods: {
     ...mapActions({
-      getParentList: "parents/getParentList",
       getUser: "auth/getUser",
+      getStudent: "students/getStudent",
+      getParentList: "parents/getParentList",
       getStudentParent: "student_parents/getStudentParent",
+      updateStudentParent: "student_parents/updateStudentParent",
     }),
+    submit(e) {
+      e.preventDefault();
+
+      const fillThis = "This field should not be left empty";
+      this.parentIdValidation = this.parentId === "" ? fillThis : "";
+
+      if (this.parentIdValidation !== "") {
+        return;
+      }
+
+      this.updateStudentParent({
+        student_id: this.student.id,
+        parent_id: this.parentId,
+        id: this.id,
+      });
+    },
   },
   async created() {
     await this.getUser();
+    await this.getStudent();
     await this.getParentList();
 
     this.id = this.$route.params.id;
